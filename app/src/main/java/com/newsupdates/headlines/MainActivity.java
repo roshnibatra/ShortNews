@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.StrictMode;
 import android.preference.PreferenceManager;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -50,63 +52,54 @@ public class MainActivity extends AppCompatActivity {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-        sharedPreferences= PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        editor=sharedPreferences.edit();
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        editor = sharedPreferences.edit();
 
 //        MobileAds.initialize(this, "ca-app-pub-3971583580619783~6316622155");
         MobileAds.initialize(this, getResources().getString(R.string.admob_app_id));
 
-        progressBar=(ProgressBar)findViewById(R.id.progress_bar);
-        loading=(TextView)findViewById(R.id.loading);
+        progressBar = findViewById(R.id.progress_bar);
+        loading = findViewById(R.id.loading);
 
-        handler=new Handler();
+        handler = new Handler();
 
         progressBar.setVisibility(View.VISIBLE);
 
-        country=sharedPreferences.getString("country",null);
-        if (country==null)
-        {
-            country="us";
+        country = sharedPreferences.getString("country", null);
+        if (country == null) {
+            country = "us";
         }
 
         try {
-            newsUrl=getIntent().getExtras().getString("newsUrl",null);
-            if (newsUrl==null)
-            {
-                newsUrl="https://newsapi.org/v2/top-headlines?category=general&apiKey=e1d2194d001540cd903f61c8f8966390&pageSize=100&country="+country;
+            newsUrl = getIntent().getExtras().getString("newsUrl", null);
+            if (newsUrl == null) {
+                newsUrl = "https://newsapi.org/v2/top-headlines?category=general&apiKey=e1d2194d001540cd903f61c8f8966390&pageSize=100&country=" + country;
+            } else {
+                newsUrl = newsUrl + "&country=" + country;
             }
-            else {
-                newsUrl=newsUrl+"&country="+country;
-            }
-        }
-        catch (Exception E)
-        {
-            newsUrl="https://newsapi.org/v2/top-headlines?category=general&apiKey=e1d2194d001540cd903f61c8f8966390&pageSize=100&country="+country;
+        } catch (Exception E) {
+            newsUrl = "https://newsapi.org/v2/top-headlines?category=general&apiKey=e1d2194d001540cd903f61c8f8966390&pageSize=100&country=" + country;
         }
 
 
-
-
-        AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdView mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
-        runnable=new Runnable() {
+        runnable = new Runnable() {
             @Override
             public void run() {
 //                initSwipePager();
-                JSONAsyncTask getData=new JSONAsyncTask();
+                JSONAsyncTask getData = new JSONAsyncTask();
                 getData.execute();
             }
         };
 
         try {
             handler.postDelayed(runnable, 10);
-        }
-        catch (Exception E)
-        {
+        } catch (Exception E) {
 //            initSwipePager();
-            JSONAsyncTask getData=new JSONAsyncTask();
+            JSONAsyncTask getData = new JSONAsyncTask();
             getData.execute();
         }
 
@@ -126,10 +119,8 @@ public class MainActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 
-
         scheduleNotification();
 //    scheduleRepeatingElapsedNotification(getApplicationContext());
-
 
 
     }
@@ -169,17 +160,6 @@ public class MainActivity extends AppCompatActivity {
 //    }
 
 
-
-
-
-
-
-
-
-
-
-
-
     class JSONAsyncTask extends AsyncTask<String, Void, Boolean> {
 
         @Override
@@ -195,45 +175,33 @@ public class MainActivity extends AppCompatActivity {
                     .url(newsUrl)
                     .build();
 
-
-
             try {
                 Response response;
                 response = client.newCall(request).execute();
-                jsonString=response.body().string();
+                jsonString = response.body().string();
 
                 editor.putString("cachedData", jsonString);
                 editor.apply();
                 JSONObject jsonObject = new JSONObject(jsonString);
-
-
-            }
-            catch (Exception E)
-            {
+            } catch (Exception E) {
 //                    Toast.makeText(getApplicationContext(), E.getMessage(), Toast.LENGTH_LONG).show();
-                    jsonString=sharedPreferences.getString("cachedData", null);
+                jsonString = sharedPreferences.getString("cachedData", null);
             }
 
             return true;
         }
 
         protected void onPostExecute(Boolean result) {
-            VerticalViewPager verticalViewPager = (VerticalViewPager) findViewById(R.id.vPager);
+            VerticalViewPager verticalViewPager = findViewById(R.id.vPager);
             try {
                 progressBar.setVisibility(View.GONE);
                 loading.setVisibility(View.GONE);
-                verticalViewPager.setAdapter(new VerticlePagerAdapter(MainActivity.this , jsonString));
+                verticalViewPager.setAdapter(new VerticlePagerAdapter(MainActivity.this, jsonString));
             } catch (Exception e) {
 //            e.printStackTrace();
             }
         }
     }
-
-
-
-
-
-
 
 
 //    public static void scheduleRepeatingElapsedNotification(Context context) {

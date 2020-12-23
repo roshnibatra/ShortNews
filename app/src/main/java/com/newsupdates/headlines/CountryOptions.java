@@ -32,7 +32,7 @@ public class CountryOptions extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_country_options);
 
-        done=(FloatingActionButton)findViewById(R.id.done);
+        done= findViewById(R.id.done);
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -45,7 +45,7 @@ public class CountryOptions extends AppCompatActivity {
         sharedPreferences= PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         editor=sharedPreferences.edit();
 
-        radioGroup=(RadioGroup)findViewById(R.id.radio_group);
+        radioGroup= findViewById(R.id.radio_group);
 
         country=sharedPreferences.getString("country", null);
         if (country==null)

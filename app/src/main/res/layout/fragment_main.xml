@@ -80,8 +80,9 @@
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/share"
-            android:layout_marginBottom="55dp"
+            android:layout_marginBottom="30dp"
             android:layout_marginRight="30dp"
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|right"
@@ -92,10 +93,11 @@
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/menu"
-            android:layout_marginBottom="55dp"
+            android:layout_marginBottom="30dp"
             android:layout_marginLeft="30dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:backgroundTint="#cd2652"
             android:layout_gravity="bottom|left"
             android:layout_alignParentBottom="true"

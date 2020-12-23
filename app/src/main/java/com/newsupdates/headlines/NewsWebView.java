@@ -32,8 +32,8 @@ public class NewsWebView extends AppCompatActivity {
 
         MobileAds.initialize(this,getResources().getString(R.string.admob_app_id));
 
-        webView=(WebView)findViewById(R.id.web_view);
-        progressBar=(ProgressBar)findViewById(R.id.progress_bar);
+        webView= findViewById(R.id.web_view);
+        progressBar= findViewById(R.id.progress_bar);
 
         mInterstitialAd = new InterstitialAd(getApplicationContext());
         mInterstitialAd.setAdUnitId(getResources().getString(R.string.admob_interstitial));
@@ -72,7 +72,7 @@ public class NewsWebView extends AppCompatActivity {
         webView.loadUrl(newsUrl);
 
 
-        AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdView mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 

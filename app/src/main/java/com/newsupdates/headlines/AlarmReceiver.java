@@ -83,7 +83,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
     public NotificationCompat.Builder buildLocalNotification(Context context, PendingIntent pendingIntent, String title, String url, Bitmap image) {
         NotificationCompat.Builder builder =
-                (NotificationCompat.Builder) new NotificationCompat.Builder(context)
+                new NotificationCompat.Builder(context)
                         .setContentIntent(pendingIntent)
                         .setSmallIcon(R.drawable.hours)
                         .setContentTitle(title)

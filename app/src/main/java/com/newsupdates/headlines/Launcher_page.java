@@ -15,8 +15,8 @@ public class Launcher_page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.first_page);
 
-        signIn = (Button) findViewById(R.id.register);
-        register = (Button) findViewById(R.id.sign_in_down);
+        signIn = findViewById(R.id.register);
+        register = findViewById(R.id.sign_in_down);
 
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override

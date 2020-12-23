@@ -19,18 +19,18 @@ public class CategoryMenu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category_menu);
-        general=(CardView)findViewById(R.id.generalNews);
-        busniess=(CardView)findViewById(R.id.businessNews);
-        entertainment=(CardView)findViewById(R.id.entertainmentNews);
-        health=(CardView)findViewById(R.id.healthNews);
-        science=(CardView)findViewById(R.id.scienceNews);
-        sports=(CardView)findViewById(R.id.sportsNews);
-        technology=(CardView)findViewById(R.id.techNews);
-        change_location=(CardView)findViewById(R.id.changeLocation);
-        rate=(CardView)findViewById(R.id.rate);
+        general= findViewById(R.id.generalNews);
+        busniess= findViewById(R.id.businessNews);
+        entertainment= findViewById(R.id.entertainmentNews);
+        health= findViewById(R.id.healthNews);
+        science= findViewById(R.id.scienceNews);
+        sports= findViewById(R.id.sportsNews);
+        technology= findViewById(R.id.techNews);
+        change_location= findViewById(R.id.changeLocation);
+        rate= findViewById(R.id.rate);
 
 
-        search_bar=(EditText)findViewById(R.id.search_bar);
+        search_bar= findViewById(R.id.search_bar);
 
         search_bar.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override

@@ -30,8 +30,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-;
-
 /**
  * Created by Anup
  */
@@ -40,10 +38,10 @@ public class VerticlePagerAdapter extends PagerAdapter {
 
     JSONObject jsonObject = null;
 
-    String mResources[] = {"NYSE Parent to Buy Chicago Stock Exchange",
+    String[] mResources = {"NYSE Parent to Buy Chicago Stock Exchange",
             "JP Morgan's Jamie Dimon: \"not unreasonable\" for US to push for fair trade with China"};
 
-    String mDescription[] = {"The owner of the New York Stock Exchange has reached a deal to buy the Chicago Stock Exchange, after a two-year acquisition effort from a Chinese-led investor group failed.",
+    String[] mDescription = {"The owner of the New York Stock Exchange has reached a deal to buy the Chicago Stock Exchange, after a two-year acquisition effort from a Chinese-led investor group failed.",
             "JPMorgan Chase CEO Jamie Dimon says it is \"not unreasonable\" for Trump to fight for better trade terms with China. In letter to shareholders, banker says market could be caught off guard by quicker pace of rate hikes."};
 
     Context mContext;
@@ -80,38 +78,38 @@ public class VerticlePagerAdapter extends PagerAdapter {
 
     @Override
     public boolean isViewFromObject(View view, Object object) {
-        return view == ((LinearLayout) object);
+        return view == object;
     }
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         View itemView = mLayoutInflater.inflate(R.layout.fragment_main, container, false);
 
-        CardView cardView = (CardView) itemView.findViewById(R.id.card_view);
+        CardView cardView = itemView.findViewById(R.id.card_view);
 
-        TextView label = (TextView) itemView.findViewById(R.id.textView);
+        TextView label = itemView.findViewById(R.id.textView);
 
-        ImageView imageView = (ImageView) itemView.findViewById(R.id.imageView);
+        ImageView imageView = itemView.findViewById(R.id.imageView);
 
-        TextView newsDesc = (TextView) itemView.findViewById(R.id.textView2);
+        TextView newsDesc = itemView.findViewById(R.id.textView2);
 
-        TextView source = (TextView) itemView.findViewById(R.id.textView_link);
+        TextView source = itemView.findViewById(R.id.textView_link);
 
-        FloatingActionButton share = (FloatingActionButton) itemView.findViewById(R.id.share);
-        FloatingActionButton categoryMenu = (FloatingActionButton) itemView.findViewById(R.id.menu);
+        FloatingActionButton share = itemView.findViewById(R.id.share);
+        FloatingActionButton categoryMenu = itemView.findViewById(R.id.menu);
 //        TextView author=(TextView)itemView.findViewById(R.id.textView_link2);
 //        TextView publishTime=(TextView)itemView.findViewById(R.id.textView_link3);
 
 
-        adsCounter++;
-        if (adsCounter % 5 == 0) {
-            mInterstitialAd.loadAd(new AdRequest.Builder().build());
-        }
-        if (adsCounter % 10 == 0) {
-            if (mInterstitialAd.isLoaded()) {
-                mInterstitialAd.show();
-            }
-        }
+//        adsCounter++;
+//        if (adsCounter % 5 == 0) {
+//            mInterstitialAd.loadAd(new AdRequest.Builder().build());
+//        }
+//        if (adsCounter % 10 == 0) {
+//            if (mInterstitialAd.isLoaded()) {
+//                mInterstitialAd.show();
+//            }
+//        }
 
 
         try {
@@ -187,12 +185,21 @@ public class VerticlePagerAdapter extends PagerAdapter {
                 @Override
                 public void onClick(View view) {
 
-                    View rootView = ((Activity) mContext).getWindow().getDecorView().findViewById(android.R.id.content);
-                    Bitmap bitmap = getScreenShot(rootView);
-                    Uri filePath = store(bitmap, "news.png");
-                    shareImage(filePath);
+//                    View rootView = ((Activity) mContext).getWindow().getDecorView().findViewById(android.R.id.content);
+//                    Bitmap bitmap = getScreenShot(rootView);
+//                    Uri filePath = store(bitmap, "news.png");
+//                    shareImage(filePath);
+//
+//                    String message = "Text I want to share.";
+//                    Intent share = new Intent(Intent.ACTION_SEND);
+//                    share.setType("text/plain");
+//                    share.putExtra(Intent.EXTRA_TEXT, message);
+//
+//                    mContext.startActivity(Intent.createChooser(share, "Title of the dialog the system will open"));
                 }
             });
+
+
 
 
             categoryMenu.setOnClickListener(new View.OnClickListener() {
